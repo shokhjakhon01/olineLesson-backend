@@ -1,0 +1,43 @@
+/videos:
+  post:
+    tags:
+      - videos
+    summary: Create a new videos
+    description: Create a new videos
+    operationId: createVideos
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Video"
+        multipart/formdata:
+          schema:
+            $ref: "#/components/schemas/Video"
+    responses:
+      200:
+        description: Created
+        content:
+          application/json:
+            schema:
+              items:
+              $ref: "#/components/schemas/Video"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Video:
+      type: object
+      properties:
+        sup_category_id:
+          type: integer
+        title:
+          type: string
+        videoLink:
+          type: string
+          format: binary

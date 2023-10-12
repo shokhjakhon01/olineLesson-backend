@@ -1,0 +1,137 @@
+/categories:
+  get:
+    tags:
+      - categories
+    summary: Get all categories
+    operationId: getAllCategories
+    description: Get all categories
+    responses:
+      200:
+        decription: categories
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+              $ref: "#/components/schemas/Categories"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+/categories/{categoryName}:
+  get:
+    tags:
+      - categories
+    summary: Get a category
+    operationId: getCategory
+    description: Get a category
+    parameters:
+      - name: categoryName
+        in: path
+        required: true
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+              $ref: "#/components/schemas/Categories"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+/categories/{categoryName}/{subcategoryName}:
+  get:
+    tags:
+      - categories
+    summary: Get a subcategory
+    operationId: getSubcategory
+    description: Get a subcategory
+    parameters:
+      - name: categoryName
+        in: path
+        required: true
+      - name: subcategoryName
+        in: path
+        required: true
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+              $ref: "#/components/schemas/Subcategory"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+
+/categories/{categoryName}/{subcategoryName}/{videoId}:
+  get:
+    tags:
+      - categories
+    summary: Get a video
+    operationId: getVideo
+    description: Get a video with comments
+    parameters:
+      - name: categoryName
+        in: path
+        required: true
+      - name: subcategoryName
+        in: path
+        required: true
+      - name: videoId
+        in: path
+        required: true
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+              $ref: "#/components/schemas/Videos"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Categories:
+      type: object
+      properties:
+        cat_id:
+          type: integer
+        cat_name:
+          type: string
+    Subcategory:
+      type: object
+      properties:
+        video_id:
+          type: integer
+        title:
+          type: string
+        link:
+          type: string
+        date:
+          type: string
+    Videos:
+      type: object
+      properties:
+        video_title:
+          type: string
+        comment:
+          type: string
+        commenter_username:
+          type: string

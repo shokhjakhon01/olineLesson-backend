@@ -1,0 +1,117 @@
+/users:
+  get:
+    tags:
+      - users
+    summary: GEt All users
+    description: This is a list of users
+    responses:
+      200:
+        description: successefuly
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Users"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+/register:
+  post:
+    tags:
+      - users
+    summary: Register a new user
+    description: Register a new user
+    requestBody:
+      description: Register a new user
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Userpost"
+    responses:
+      200:
+        description: successefuly
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Users"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+/login:
+  post:
+    tags:
+      - users
+    summary: Login a user
+    description: Login a user
+    requestBody:
+      description: Register a new user
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UserLogin"
+    responses:
+      200:
+        description: successefuly
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Users"
+      400:
+        description: error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Users:
+      type: array
+      items:
+        type: object
+        properties:
+          user_id:
+            type: number
+          username:
+            type: string
+          email:
+            type: string
+          password:
+            type: string
+    Userpost:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Error:
+      type: object
+      properties:
+        stauts:
+          type: number
+        message:
+          type: string
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
